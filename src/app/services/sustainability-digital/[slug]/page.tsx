@@ -10,9 +10,10 @@ export function generateStaticParams() {
 }
 
 // Generate metadata for each service page
-export function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const service = services.find(
-    (s) => s.slug === params.slug && s.category === "sustainability-digital"
+    (s) => s.slug === slug && s.category === "sustainability-digital"
   );
 
   if (!service) {
@@ -25,13 +26,14 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
-export default function SustainabilityDigitalServicePage({
+export default async function SustainabilityDigitalServicePage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   const service = services.find(
-    (s) => s.slug === params.slug && s.category === "sustainability-digital"
+    (s) => s.slug === slug && s.category === "sustainability-digital"
   );
 
   if (!service) {

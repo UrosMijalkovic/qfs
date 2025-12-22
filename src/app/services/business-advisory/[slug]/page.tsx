@@ -10,9 +10,10 @@ export function generateStaticParams() {
 }
 
 // Generate metadata for each service page
-export function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const service = services.find(
-    (s) => s.slug === params.slug && s.category === "business-advisory"
+    (s) => s.slug === slug && s.category === "business-advisory"
   );
 
   if (!service) {
@@ -25,13 +26,14 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
-export default function BusinessAdvisoryServicePage({
+export default async function BusinessAdvisoryServicePage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   const service = services.find(
-    (s) => s.slug === params.slug && s.category === "business-advisory"
+    (s) => s.slug === slug && s.category === "business-advisory"
   );
 
   if (!service) {
