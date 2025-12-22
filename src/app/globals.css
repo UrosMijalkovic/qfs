@@ -1,26 +1,128 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --brand-primary: #A5040C;
+  --brand-dark: #7A0309;
+  --brand-light: #C41E26;
+
+  /* Dark Palette */
+  --rich-black: #0D0D0D;
+  --charcoal: #1A1A1A;
+  --dark-gray: #262626;
+
+  /* Neutral Palette */
+  --white: #FFFFFF;
+  --off-white: #FAFAFA;
+  --light-gray: #F5F5F5;
+  --border-gray: #E5E5E5;
+  --text-tertiary: #A3A3A3;
+  --text-secondary: #737373;
+  --text-primary: #404040;
+  --text-heading: #171717;
+
+  /* Semantic Aliases */
+  --background: var(--white);
+  --foreground: var(--text-primary);
+  --accent: var(--brand-primary);
+  --accent-hover: var(--brand-dark);
+  --primary-dark: var(--rich-black);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Brand */
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+
+  /* Dark */
+  --color-primary-dark: var(--primary-dark);
+  --color-charcoal: var(--charcoal);
+  --color-dark-gray: var(--dark-gray);
+
+  /* Neutrals */
+  --color-off-white: var(--off-white);
+  --color-light-gray: var(--light-gray);
+  --color-border-gray: var(--border-gray);
+  --color-mid-gray: var(--border-gray);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-gray: var(--text-secondary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-primary: var(--text-primary);
+  --color-near-black: var(--text-heading);
+
+  /* Font */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
+}
+
+/* Typography Scale */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-heading);
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); }
+h3 { font-size: clamp(1.25rem, 3vw, 1.5rem); }
+h4 { font-size: clamp(1.125rem, 2vw, 1.25rem); }
+
+p {
+  color: var(--text-primary);
+}
+
+/* Link Styles - only for text links, not buttons */
+a:not([style]) {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:not([style]):hover {
+  color: var(--accent-hover);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+/* Focus States */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-gray);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
 }
