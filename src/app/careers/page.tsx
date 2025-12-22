@@ -131,13 +131,22 @@ export default function CareersPage() {
             <p className="mt-6 text-lg lg:text-xl text-white/70 leading-relaxed">
               Join a team of professionals dedicated to solving complex business challenges. We're looking for talented individuals who want to make a real impact.
             </p>
-            <div className="mt-8">
+            <div style={{ marginTop: '2rem' }}>
               <a
                 href="#positions"
-                className="inline-flex items-center px-6 py-3 rounded-lg bg-accent text-white font-medium hover:bg-accent-hover transition-colors"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  padding: '0.75rem 1.5rem',
+                  borderRadius: '0.5rem',
+                  backgroundColor: '#A5040C',
+                  color: '#FFFFFF',
+                  fontWeight: 500,
+                  textDecoration: 'none',
+                }}
               >
                 View Open Positions
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg style={{ marginLeft: '0.5rem', width: '1rem', height: '1rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
               </a>
@@ -308,13 +317,22 @@ export default function CareersPage() {
                       )}
                     </div>
                   </div>
-                  <div className="flex-shrink-0">
+                  <div style={{ flexShrink: 0 }}>
                     <a
                       href={`mailto:careers@qfs.rs?subject=Application: ${position.title}`}
-                      className="inline-flex items-center px-6 py-3 rounded-lg bg-accent text-white font-medium hover:bg-accent-hover transition-colors"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        padding: '0.75rem 1.5rem',
+                        borderRadius: '0.5rem',
+                        backgroundColor: '#A5040C',
+                        color: '#FFFFFF',
+                        fontWeight: 500,
+                        textDecoration: 'none',
+                      }}
                     >
                       Apply Now
-                      <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg style={{ marginLeft: '0.5rem', width: '1rem', height: '1rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </a>
@@ -360,21 +378,32 @@ export default function CareersPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-28 bg-primary-dark">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-semibold text-white">
+      <section style={{ backgroundColor: '#0D0D0D', padding: '5rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 600, color: '#FFFFFF' }}>
             Don't see the right role?
           </h2>
-          <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
+          <p style={{ marginTop: '1rem', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', maxWidth: '32rem', marginLeft: 'auto', marginRight: 'auto' }}>
             We're always interested in hearing from talented professionals. Send us your CV and we'll keep you in mind for future opportunities.
           </p>
-          <div className="mt-8">
+          <div style={{ marginTop: '2rem' }}>
             <a
               href="mailto:careers@qfs.rs?subject=General Application"
-              className="inline-flex items-center px-8 py-4 rounded-lg bg-accent text-white font-medium hover:bg-accent-hover transition-colors"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1rem 2rem',
+                borderRadius: '0.5rem',
+                backgroundColor: '#A5040C',
+                color: '#FFFFFF',
+                fontSize: '1rem',
+                fontWeight: 500,
+                textDecoration: 'none',
+              }}
             >
               Send Your CV
-              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg style={{ marginLeft: '0.5rem', width: '1rem', height: '1rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </a>

@@ -317,21 +317,50 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-28 bg-primary-dark">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-semibold text-white">
+      <section style={{ backgroundColor: '#0D0D0D', padding: '5rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 600, color: '#FFFFFF' }}>
             Ready to work together?
           </h2>
-          <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
+          <p style={{ marginTop: '1rem', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', maxWidth: '32rem', marginLeft: 'auto', marginRight: 'auto' }}>
             Let's discuss how we can help your organization achieve its goals.
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button href="/contact" variant="primary" size="lg">
+          <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+            <a
+              href="/contact"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1rem 2rem',
+                borderRadius: '0.5rem',
+                backgroundColor: '#A5040C',
+                color: '#FFFFFF',
+                fontSize: '1rem',
+                fontWeight: 500,
+                textDecoration: 'none',
+              }}
+            >
               Get in Touch
-            </Button>
-            <Button href="/careers" variant="ghost" size="lg">
+            </a>
+            <a
+              href="/careers"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1rem 2rem',
+                borderRadius: '0.5rem',
+                backgroundColor: 'transparent',
+                color: '#FFFFFF',
+                fontSize: '1rem',
+                fontWeight: 500,
+                textDecoration: 'none',
+                border: '1px solid rgba(255,255,255,0.3)',
+              }}
+            >
               Join Our Team
-            </Button>
+            </a>
           </div>
         </div>
       </section>

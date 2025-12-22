@@ -205,18 +205,29 @@ export default async function InsightPage({
       )}
 
       {/* CTA */}
-      <section className="py-20 lg:py-28 bg-primary-dark">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-semibold text-white">
+      <section style={{ backgroundColor: '#0D0D0D', padding: '5rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 600, color: '#FFFFFF' }}>
             Let's discuss your challenges
           </h2>
-          <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
+          <p style={{ marginTop: '1rem', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', maxWidth: '32rem', marginLeft: 'auto', marginRight: 'auto' }}>
             Our partners are available for a confidential conversation about your needs.
           </p>
-          <div className="mt-8">
+          <div style={{ marginTop: '2rem' }}>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-lg bg-accent text-white font-medium hover:bg-accent-hover transition-colors"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1rem 2rem',
+                borderRadius: '0.5rem',
+                backgroundColor: '#A5040C',
+                color: '#FFFFFF',
+                fontSize: '1rem',
+                fontWeight: 500,
+                textDecoration: 'none',
+              }}
             >
               Contact Us
             </Link>
