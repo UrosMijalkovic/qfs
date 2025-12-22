@@ -2,6 +2,7 @@ import Link from "next/link";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import { ServiceCard, ProofPoint, ArticleCard } from "@/components/ui/Card";
+import { getFeaturedInsight, getRecentInsights, categoryLabels } from "@/lib/insights";
 
 // Icons for services
 const FinanceIcon = () => (
@@ -73,6 +74,143 @@ const HeroBackground = () => (
     </div>
   </div>
 );
+
+// Featured Insights Section Component
+const FeaturedInsightsSection = () => {
+  const featured = getFeaturedInsight();
+  const recentInsights = getRecentInsights(3, featured.slug);
+
+  return (
+    <section className="py-20 lg:py-28" style={{ backgroundColor: '#FFFFFF' }}>
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
+          <div>
+            <span
+              className="text-[12px] font-semibold tracking-widest uppercase"
+              style={{ color: '#A5040C' }}
+            >
+              Insights
+            </span>
+            <h2 className="mt-4 text-3xl lg:text-4xl font-semibold" style={{ color: '#171717' }}>
+              Latest Thinking
+            </h2>
+            <p className="mt-4 text-lg max-w-xl" style={{ color: '#737373' }}>
+              Insights and perspectives on the challenges facing business leaders today.
+            </p>
+          </div>
+          <Link
+            href="/insights"
+            className="mt-6 lg:mt-0 inline-flex items-center text-[15px] font-medium transition-colors"
+            style={{ color: '#A5040C' }}
+          >
+            Explore all insights
+            <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Featured Article */}
+          <Link
+            href={`/insights/${featured.slug}`}
+            className="group block rounded-2xl overflow-hidden"
+            style={{ backgroundColor: '#0D0D0D' }}
+          >
+            {/* Abstract image placeholder */}
+            <div className="relative h-64 overflow-hidden">
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(135deg, #1a1a1a 0%, #0D0D0D 50%, #A5040C 150%)',
+                }}
+              />
+              {/* Geometric overlay */}
+              <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 200">
+                <path d="M0,100 Q100,50 200,100 T400,100" stroke="white" strokeWidth="0.5" fill="none" />
+                <path d="M0,120 Q100,70 200,120 T400,120" stroke="white" strokeWidth="0.5" fill="none" />
+                <path d="M0,140 Q100,90 200,140 T400,140" stroke="white" strokeWidth="0.5" fill="none" />
+                <circle cx="350" cy="50" r="30" stroke="white" strokeWidth="0.5" fill="none" opacity="0.5" />
+                <circle cx="350" cy="50" r="20" stroke="white" strokeWidth="0.5" fill="none" opacity="0.5" />
+              </svg>
+              {/* Category badge */}
+              <div className="absolute top-6 left-6">
+                <span
+                  className="px-3 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wider"
+                  style={{ backgroundColor: '#A5040C', color: '#FFFFFF' }}
+                >
+                  {categoryLabels[featured.category]}
+                </span>
+              </div>
+            </div>
+
+            <div className="p-8">
+              <h3
+                className="text-xl lg:text-2xl font-semibold mb-3 transition-colors"
+                style={{ color: '#FFFFFF' }}
+              >
+                {featured.title}
+              </h3>
+              <p className="text-[15px] mb-4" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                {featured.date}
+              </p>
+              <div className="flex items-center text-[14px] font-medium" style={{ color: '#A5040C' }}>
+                Read article
+                <svg className="ml-2 w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          </Link>
+
+          {/* Recent Articles */}
+          <div className="space-y-6">
+            {recentInsights.map((article) => (
+              <Link
+                key={article.slug}
+                href={`/insights/${article.slug}`}
+                className="group flex gap-6 p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
+                style={{ backgroundColor: '#FAFAFA', border: '1px solid #E5E5E5' }}
+              >
+                {/* Mini visual */}
+                <div
+                  className="hidden sm:flex w-24 h-24 flex-shrink-0 rounded-lg items-center justify-center"
+                  style={{ backgroundColor: '#0D0D0D' }}
+                >
+                  <div
+                    className="w-8 h-8 rounded"
+                    style={{
+                      background: 'linear-gradient(135deg, #A5040C 0%, #7A0309 100%)',
+                      opacity: 0.8
+                    }}
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <span
+                    className="text-[11px] font-semibold uppercase tracking-wider"
+                    style={{ color: '#A5040C' }}
+                  >
+                    {categoryLabels[article.category]}
+                  </span>
+                  <h3
+                    className="mt-2 text-lg font-semibold transition-colors group-hover:text-[#A5040C]"
+                    style={{ color: '#171717' }}
+                  >
+                    {article.title}
+                  </h3>
+                  <p className="mt-2 text-[14px]" style={{ color: '#737373' }}>
+                    {article.date}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 // Abstract pattern for sections
 const AbstractDivider = () => (
@@ -377,153 +515,7 @@ export default function Home() {
       </section>
 
       {/* Featured Insights */}
-      <section className="py-20 lg:py-28" style={{ backgroundColor: '#FFFFFF' }}>
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
-            <div>
-              <span
-                className="text-[12px] font-semibold tracking-widest uppercase"
-                style={{ color: '#A5040C' }}
-              >
-                Insights
-              </span>
-              <h2 className="mt-4 text-3xl lg:text-4xl font-semibold" style={{ color: '#171717' }}>
-                Latest Thinking
-              </h2>
-              <p className="mt-4 text-lg max-w-xl" style={{ color: '#737373' }}>
-                Insights and perspectives on the challenges facing business leaders today.
-              </p>
-            </div>
-            <Link
-              href="/insights"
-              className="mt-6 lg:mt-0 inline-flex items-center text-[15px] font-medium transition-colors"
-              style={{ color: '#A5040C' }}
-            >
-              Explore all insights
-              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            {/* Featured Article */}
-            <Link
-              href="/insights/cfo-guide-uncertainty"
-              className="group block rounded-2xl overflow-hidden"
-              style={{ backgroundColor: '#0D0D0D' }}
-            >
-              {/* Abstract image placeholder */}
-              <div className="relative h-64 overflow-hidden">
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: 'linear-gradient(135deg, #1a1a1a 0%, #0D0D0D 50%, #A5040C 150%)',
-                  }}
-                />
-                {/* Geometric overlay */}
-                <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 200">
-                  <path d="M0,100 Q100,50 200,100 T400,100" stroke="white" strokeWidth="0.5" fill="none" />
-                  <path d="M0,120 Q100,70 200,120 T400,120" stroke="white" strokeWidth="0.5" fill="none" />
-                  <path d="M0,140 Q100,90 200,140 T400,140" stroke="white" strokeWidth="0.5" fill="none" />
-                  <circle cx="350" cy="50" r="30" stroke="white" strokeWidth="0.5" fill="none" opacity="0.5" />
-                  <circle cx="350" cy="50" r="20" stroke="white" strokeWidth="0.5" fill="none" opacity="0.5" />
-                </svg>
-                {/* Category badge */}
-                <div className="absolute top-6 left-6">
-                  <span
-                    className="px-3 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wider"
-                    style={{ backgroundColor: '#A5040C', color: '#FFFFFF' }}
-                  >
-                    Financial Performance
-                  </span>
-                </div>
-              </div>
-
-              <div className="p-8">
-                <h3
-                  className="text-xl lg:text-2xl font-semibold mb-3 transition-colors"
-                  style={{ color: '#FFFFFF' }}
-                >
-                  The CFO's Guide to Navigating Uncertainty: Building Resilient Financial Operations
-                </h3>
-                <p className="text-[15px] mb-4" style={{ color: 'rgba(255,255,255,0.6)' }}>
-                  January 2025
-                </p>
-                <div className="flex items-center text-[14px] font-medium" style={{ color: '#A5040C' }}>
-                  Read article
-                  <svg className="ml-2 w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </div>
-              </div>
-            </Link>
-
-            {/* Recent Articles */}
-            <div className="space-y-6">
-              {[
-                {
-                  title: "Zero-Based Budgeting: When It Works and When It Doesn't",
-                  category: "Strategy",
-                  date: "January 2025",
-                  href: "/insights/zero-based-budgeting"
-                },
-                {
-                  title: "ESG Reporting: Moving Beyond Compliance to Competitive Advantage",
-                  category: "Sustainability",
-                  date: "December 2024",
-                  href: "/insights/esg-reporting"
-                },
-                {
-                  title: "M&A Integration: The First 100 Days That Define Success",
-                  category: "Transactions",
-                  date: "December 2024",
-                  href: "/insights/ma-integration"
-                }
-              ].map((article, index) => (
-                <Link
-                  key={index}
-                  href={article.href}
-                  className="group flex gap-6 p-6 rounded-xl transition-all duration-300 hover:shadow-lg"
-                  style={{ backgroundColor: '#FAFAFA', border: '1px solid #E5E5E5' }}
-                >
-                  {/* Mini visual */}
-                  <div
-                    className="hidden sm:flex w-24 h-24 flex-shrink-0 rounded-lg items-center justify-center"
-                    style={{ backgroundColor: '#0D0D0D' }}
-                  >
-                    <div
-                      className="w-8 h-8 rounded"
-                      style={{
-                        background: 'linear-gradient(135deg, #A5040C 0%, #7A0309 100%)',
-                        opacity: 0.8
-                      }}
-                    />
-                  </div>
-
-                  <div className="flex-1">
-                    <span
-                      className="text-[11px] font-semibold uppercase tracking-wider"
-                      style={{ color: '#A5040C' }}
-                    >
-                      {article.category}
-                    </span>
-                    <h3
-                      className="mt-2 text-lg font-semibold transition-colors group-hover:text-[#A5040C]"
-                      style={{ color: '#171717' }}
-                    >
-                      {article.title}
-                    </h3>
-                    <p className="mt-2 text-[14px]" style={{ color: '#737373' }}>
-                      {article.date}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <FeaturedInsightsSection />
 
       {/* Proof / Credibility */}
       <section className="py-20 lg:py-28 relative overflow-hidden" style={{ backgroundColor: '#F5F5F5' }}>

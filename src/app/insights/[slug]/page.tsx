@@ -1,0 +1,228 @@
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { insights, categoryLabels, getInsightBySlug, getRecentInsights } from "@/lib/insights";
+
+// Generate static params for all insights
+export function generateStaticParams() {
+  return insights.map((insight) => ({
+    slug: insight.slug,
+  }));
+}
+
+// Generate metadata for each insight page
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const insight = getInsightBySlug(slug);
+
+  if (!insight) {
+    return { title: "Article Not Found | QFS" };
+  }
+
+  return {
+    title: `${insight.title} | Insights | QFS`,
+    description: insight.excerpt,
+  };
+}
+
+export default async function InsightPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const insight = getInsightBySlug(slug);
+
+  if (!insight) {
+    notFound();
+  }
+
+  const relatedInsights = getRecentInsights(3, insight.slug);
+
+  return (
+    <>
+      {/* Hero */}
+      <section className="bg-primary-dark pt-32 pb-16 lg:pt-40 lg:pb-20">
+        <div className="max-w-[800px] mx-auto px-6 lg:px-8">
+          {/* Breadcrumb */}
+          <nav className="mb-8">
+            <ol className="flex items-center gap-2 text-[14px] text-white/50">
+              <li>
+                <Link href="/insights" className="hover:text-white/70 transition-colors">
+                  Insights
+                </Link>
+              </li>
+              <li>/</li>
+              <li className="text-white/70">{categoryLabels[insight.category]}</li>
+            </ol>
+          </nav>
+
+          {/* Category */}
+          <span className="inline-block px-3 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-accent text-white">
+            {categoryLabels[insight.category]}
+          </span>
+
+          <h1 className="mt-6 text-3xl lg:text-4xl xl:text-[42px] font-semibold text-white leading-tight">
+            {insight.title}
+          </h1>
+
+          <div className="mt-6 flex items-center gap-4 text-[15px] text-white/60">
+            <span>{insight.date}</span>
+            <span className="w-1 h-1 rounded-full bg-white/40" />
+            <span>{insight.readTime}</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Article Content */}
+      <article className="py-16 lg:py-20 bg-white">
+        <div className="max-w-[800px] mx-auto px-6 lg:px-8">
+          {/* Lead paragraph */}
+          <p className="text-xl lg:text-[22px] text-text-primary leading-relaxed font-medium">
+            {insight.excerpt}
+          </p>
+
+          {/* Content */}
+          <div className="mt-12 prose prose-lg max-w-none">
+            {insight.content.map((block, index) => {
+              // Check if it's a heading
+              if (block.startsWith("## ")) {
+                return (
+                  <h2
+                    key={index}
+                    className="text-2xl font-semibold text-near-black mt-12 mb-4"
+                  >
+                    {block.replace("## ", "")}
+                  </h2>
+                );
+              }
+              if (block.startsWith("### ")) {
+                return (
+                  <h3
+                    key={index}
+                    className="text-xl font-semibold text-near-black mt-8 mb-3"
+                  >
+                    {block.replace("### ", "")}
+                  </h3>
+                );
+              }
+
+              // Regular paragraph - handle bold text
+              const formattedText = block.split(/(\*\*[^*]+\*\*)/).map((part, i) => {
+                if (part.startsWith("**") && part.endsWith("**")) {
+                  return (
+                    <strong key={i} className="font-semibold text-near-black">
+                      {part.slice(2, -2)}
+                    </strong>
+                  );
+                }
+                return part;
+              });
+
+              return (
+                <p
+                  key={index}
+                  className="text-[17px] text-text-primary leading-relaxed mb-6"
+                >
+                  {formattedText}
+                </p>
+              );
+            })}
+          </div>
+
+          {/* Share */}
+          <div className="mt-16 pt-8 border-t border-border-gray">
+            <div className="flex items-center justify-between">
+              <span className="text-[14px] font-medium text-text-secondary">
+                Share this article
+              </span>
+              <div className="flex items-center gap-4">
+                <button className="w-10 h-10 rounded-full bg-light-gray flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M18.77 7.46H14.5v-1.9c0-.9.6-1.1 1-1.1h3V.5h-4.33C10.24.5 9.5 3.44 9.5 5.32v2.15h-3v4h3v12h5v-12h3.85l.42-4z"/>
+                  </svg>
+                </button>
+                <button className="w-10 h-10 rounded-full bg-light-gray flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.44 4.83c-.8.37-1.5.38-2.22.02.93-.56.98-.96 1.32-2.02-.88.52-1.86.9-2.9 1.1-.82-.88-2-1.43-3.3-1.43-2.5 0-4.55 2.04-4.55 4.54 0 .36.03.7.1 1.04-3.77-.2-7.12-2-9.36-4.75-.4.67-.6 1.45-.6 2.3 0 1.56.8 2.95 2 3.77-.74-.03-1.44-.23-2.05-.57v.06c0 2.2 1.56 4.03 3.64 4.44-.67.2-1.37.2-2.06.08.58 1.8 2.26 3.12 4.25 3.16C5.78 18.1 3.37 18.74 1 18.46c2 1.3 4.4 2.04 6.97 2.04 8.35 0 12.92-6.92 12.92-12.93 0-.2 0-.4-.02-.6.9-.63 1.96-1.22 2.56-2.14z"/>
+                  </svg>
+                </button>
+                <button className="w-10 h-10 rounded-full bg-light-gray flex items-center justify-center hover:bg-accent hover:text-white transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.47 2H3.53a1.45 1.45 0 00-1.47 1.43v17.14A1.45 1.45 0 003.53 22h16.94a1.45 1.45 0 001.47-1.43V3.43A1.45 1.45 0 0020.47 2zM8.09 18.74h-3v-9h3v9zM6.59 8.48a1.56 1.56 0 110-3.12 1.56 1.56 0 010 3.12zM18.91 18.74h-3v-4.26c0-1.08-.02-2.47-1.5-2.47-1.5 0-1.73 1.18-1.73 2.4v4.33h-3v-9h2.89v1.23h.04a3.18 3.18 0 012.85-1.57c3.05 0 3.61 2 3.61 4.61v4.73z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      {/* Related Articles */}
+      {relatedInsights.length > 0 && (
+        <section className="py-16 lg:py-20 bg-light-gray">
+          <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+            <h2 className="text-2xl lg:text-3xl font-semibold text-near-black mb-12">
+              Related Articles
+            </h2>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {relatedInsights.map((related) => (
+                <Link
+                  key={related.slug}
+                  href={`/insights/${related.slug}`}
+                  className="group block bg-white rounded-xl overflow-hidden border border-border-gray hover:shadow-xl hover:border-accent/20 transition-all duration-300"
+                >
+                  {/* Image placeholder */}
+                  <div className="relative h-40 bg-primary-dark">
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: 'linear-gradient(135deg, #1a1a1a 0%, #0D0D0D 70%, #A5040C 150%)',
+                      }}
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-accent text-white">
+                        {categoryLabels[related.category]}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-5">
+                    <h3 className="text-[16px] font-semibold text-near-black group-hover:text-accent transition-colors line-clamp-2">
+                      {related.title}
+                    </h3>
+                    <div className="mt-3 flex items-center gap-3 text-[12px] text-text-secondary">
+                      <span>{related.date}</span>
+                      <span className="w-1 h-1 rounded-full bg-text-tertiary" />
+                      <span>{related.readTime}</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA */}
+      <section className="py-20 lg:py-28 bg-primary-dark">
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 text-center">
+          <h2 className="text-3xl lg:text-4xl font-semibold text-white">
+            Let's discuss your challenges
+          </h2>
+          <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
+            Our partners are available for a confidential conversation about your needs.
+          </p>
+          <div className="mt-8">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-lg bg-accent text-white font-medium hover:bg-accent-hover transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
