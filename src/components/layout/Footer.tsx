@@ -16,30 +16,30 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-primary-dark text-white">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+    <footer style={{ backgroundColor: '#0D0D0D', color: '#FFFFFF' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 1.5rem 5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem' }}>
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="text-2xl font-semibold tracking-tight">
+          <div>
+            <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 600, letterSpacing: '-0.025em', color: '#FFFFFF', textDecoration: 'none' }}>
               QFS
             </Link>
-            <p className="mt-4 text-[15px] text-white/70 leading-relaxed max-w-xs">
+            <p style={{ marginTop: '1rem', fontSize: '0.9375rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6, maxWidth: '280px' }}>
               We partner with leadership teams to solve complex financial and strategic challenges.
             </p>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="text-[13px] font-semibold uppercase tracking-wider text-white/50 mb-4">
+            <h4 style={{ fontSize: '0.8125rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'rgba(255,255,255,0.5)', marginBottom: '1rem' }}>
               Services
             </h4>
-            <ul className="space-y-3">
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-[15px] text-white/70 hover:text-white transition-colors"
+                    style={{ fontSize: '0.9375rem', color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}
                   >
                     {link.name}
                   </Link>
@@ -50,15 +50,15 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-[13px] font-semibold uppercase tracking-wider text-white/50 mb-4">
+            <h4 style={{ fontSize: '0.8125rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'rgba(255,255,255,0.5)', marginBottom: '1rem' }}>
               Company
             </h4>
-            <ul className="space-y-3">
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-[15px] text-white/70 hover:text-white transition-colors"
+                    style={{ fontSize: '0.9375rem', color: 'rgba(255,255,255,0.7)', textDecoration: 'none' }}
                   >
                     {link.name}
                   </Link>
@@ -69,18 +69,18 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-[13px] font-semibold uppercase tracking-wider text-white/50 mb-4">
+            <h4 style={{ fontSize: '0.8125rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'rgba(255,255,255,0.5)', marginBottom: '1rem' }}>
               Get in Touch
             </h4>
-            <p className="text-[15px] text-white/70 mb-4">
+            <p style={{ fontSize: '0.9375rem', color: 'rgba(255,255,255,0.7)', marginBottom: '1rem' }}>
               Ready to discuss your challenges?
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center text-[15px] font-medium text-accent hover:text-white transition-colors"
+              style={{ display: 'inline-flex', alignItems: 'center', fontSize: '0.9375rem', fontWeight: 500, color: '#FFFFFF', textDecoration: 'none' }}
             >
               Contact Us
-              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg style={{ marginLeft: '0.5rem', width: '1rem', height: '1rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </Link>
@@ -88,15 +88,15 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[13px] text-white/50">
+        <div style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
+          <p style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.5)' }}>
             &copy; {new Date().getFullYear()} QFS. All rights reserved.
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy" className="text-[13px] text-white/50 hover:text-white/70 transition-colors">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+            <Link href="/privacy" style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-[13px] text-white/50 hover:text-white/70 transition-colors">
+            <Link href="/terms" style={{ fontSize: '0.8125rem', color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>
               Terms of Service
             </Link>
           </div>

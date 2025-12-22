@@ -6,6 +6,58 @@ export const metadata = {
   description: "Perspectives and analysis on finance, strategy, and sustainability from QFS advisory experts.",
 };
 
+// Hero background component
+const HeroBackground = () => (
+  <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        opacity: 0.03,
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: '60px 60px',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        top: '20%',
+        right: '10%',
+        width: '24rem',
+        height: '24rem',
+        opacity: 0.1,
+        background: 'linear-gradient(135deg, #A5040C 0%, transparent 60%)',
+        borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+        filter: 'blur(60px)',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        bottom: '10%',
+        left: '5%',
+        width: '20rem',
+        height: '20rem',
+        opacity: 0.07,
+        background: 'linear-gradient(225deg, #A5040C 0%, transparent 60%)',
+        borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
+        filter: 'blur(50px)',
+      }}
+    />
+    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04 }} xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="insightsDiagonalLines" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#insightsDiagonalLines)" />
+    </svg>
+  </div>
+);
+
 export default function InsightsPage() {
   const featured = getFeaturedInsight();
   const otherInsights = insights.filter((i) => i.slug !== featured.slug);
@@ -13,12 +65,13 @@ export default function InsightsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-primary-dark pt-32 pb-16 lg:pt-40 lg:pb-24">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <h1 className="text-3xl lg:text-4xl xl:text-5xl font-semibold text-white leading-tight">
+      <section style={{ position: 'relative', backgroundColor: '#0D0D0D', paddingTop: '8rem', paddingBottom: '4rem' }}>
+        <HeroBackground />
+        <div style={{ position: 'relative', zIndex: 10, maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
+          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.1 }}>
             Insights
           </h1>
-          <p className="mt-6 text-lg lg:text-xl text-white/70 max-w-2xl leading-relaxed">
+          <p style={{ marginTop: '1.5rem', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', maxWidth: '42rem', lineHeight: 1.7 }}>
             Perspectives and analysis on the challenges facing business leaders today—from financial transformation to strategic decision-making.
           </p>
         </div>

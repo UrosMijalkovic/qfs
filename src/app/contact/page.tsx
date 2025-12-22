@@ -2,6 +2,58 @@
 
 import { useState } from "react";
 
+// Hero background component
+const HeroBackground = () => (
+  <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        opacity: 0.03,
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: '60px 60px',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        top: '20%',
+        right: '10%',
+        width: '24rem',
+        height: '24rem',
+        opacity: 0.1,
+        background: 'linear-gradient(135deg, #A5040C 0%, transparent 60%)',
+        borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+        filter: 'blur(60px)',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        bottom: '10%',
+        left: '5%',
+        width: '20rem',
+        height: '20rem',
+        opacity: 0.07,
+        background: 'linear-gradient(225deg, #A5040C 0%, transparent 60%)',
+        borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
+        filter: 'blur(50px)',
+      }}
+    />
+    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04 }} xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="contactDiagonalLines" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#contactDiagonalLines)" />
+    </svg>
+  </div>
+);
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -32,8 +84,9 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section style={{ backgroundColor: '#0D0D0D', paddingTop: '8rem', paddingBottom: '5rem' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
+      <section style={{ position: 'relative', backgroundColor: '#0D0D0D', paddingTop: '8rem', paddingBottom: '5rem' }}>
+        <HeroBackground />
+        <div style={{ position: 'relative', zIndex: 10, maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
           <div style={{ maxWidth: '48rem' }}>
             <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.1 }}>
               Get in Touch
