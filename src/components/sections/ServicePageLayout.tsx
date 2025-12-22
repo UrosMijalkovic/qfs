@@ -141,6 +141,39 @@ export default function ServicePageLayout({ service }: ServicePageLayoutProps) {
         </div>
       </Section>
 
+      {/* Our Capabilities */}
+      {service.capabilities && service.capabilities.length > 0 && (
+        <Section background="white">
+          <h2 className="text-2xl lg:text-3xl font-semibold text-near-black mb-4">
+            Our Capabilities
+          </h2>
+          <p className="text-lg text-text-gray mb-12 max-w-3xl">
+            We bring deep expertise across every aspect of {service.title.toLowerCase()},
+            ensuring comprehensive support for your initiatives.
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {service.capabilities.map((capability, index) => (
+              <div
+                key={capability.title}
+                className="group p-6 bg-off-white rounded-xl border border-transparent hover:border-accent/20 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                  <span className="text-accent font-semibold text-sm">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <h3 className="text-lg font-semibold text-near-black mb-2 group-hover:text-accent transition-colors">
+                  {capability.title}
+                </h3>
+                <p className="text-[14px] text-text-gray leading-relaxed">
+                  {capability.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
       {/* Related Services */}
       {relatedServices.length > 0 && (
         <Section background="off-white">

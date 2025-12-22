@@ -14,6 +14,10 @@ export interface Service {
     metric: string;
     description: string;
   }[];
+  capabilities: {
+    title: string;
+    description: string;
+  }[];
 }
 
 export const services: Service[] = [
@@ -47,13 +51,23 @@ export const services: Service[] = [
       { metric: "30-40%", description: "Typical cost reduction vs. in-house operations" },
       { metric: "5 days", description: "Faster monthly close achieved" },
     ],
+    capabilities: [
+      { title: "Full-Cycle Accounting", description: "Complete management of your general ledger, journal entries, account reconciliations, and month-end close processes with GAAP/IFRS compliance." },
+      { title: "Accounts Payable Management", description: "Invoice processing, vendor management, payment scheduling, and cash flow optimization to maximize working capital efficiency." },
+      { title: "Accounts Receivable Operations", description: "Billing, collections, credit management, and aging analysis to accelerate cash conversion and reduce DSO." },
+      { title: "Payroll Administration", description: "End-to-end payroll processing including tax withholdings, benefits administration, and regulatory compliance across jurisdictions." },
+      { title: "Financial Reporting", description: "Timely and accurate monthly, quarterly, and annual financial statements with variance analysis and executive summaries." },
+      { title: "Treasury Management", description: "Cash management, bank reconciliations, foreign exchange exposure management, and short-term investment optimization." },
+      { title: "Tax Compliance Support", description: "Preparation support for corporate tax filings, VAT/GST returns, and coordination with external tax advisors." },
+      { title: "Audit Coordination", description: "Preparation of audit schedules, liaison with external auditors, and management of the audit timeline and deliverables." },
+    ],
   },
   {
     slug: "controlling-reporting",
     title: "Controlling & Reporting",
     category: "financial-advisory",
     headline: "Reporting that drives decisions, not just documents them",
-    description: "Transform your management reporting from backward-looking data dumps into forward-looking decision support.",
+    description: "Transform your management reporting from backward-looking data dumps into forward-looking decision support. Unleash the power of your data.",
     challenge: [
       "Management reports arrive too late to inform decisions, becoming historical records rather than actionable intelligence.",
       "Data quality issues undermine confidence in reported numbers, leading to shadow reporting and spreadsheet chaos.",
@@ -75,6 +89,16 @@ export const services: Service[] = [
     outcomes: [
       { metric: "70%", description: "Reduction in manual reporting effort" },
       { metric: "Day 3", description: "Management reports available after month-end" },
+    ],
+    capabilities: [
+      { title: "Management Reporting Design", description: "Structure reports that tell a story—starting with key insights, drilling into drivers, and ending with recommended actions." },
+      { title: "KPI Framework Development", description: "Define metrics that matter, establish targets, and create accountability through clear ownership and review cadences." },
+      { title: "Variance Analysis", description: "Move beyond 'what changed' to 'why it changed' and 'what to do about it' with root cause analysis frameworks." },
+      { title: "Dashboard Development", description: "Interactive visualizations that surface insights at a glance while enabling drill-down into underlying details." },
+      { title: "Data Quality Management", description: "Establish data governance, validation rules, and reconciliation processes that build trust in reported numbers." },
+      { title: "Cost Center Reporting", description: "Granular visibility into departmental spending with budget vs. actual tracking and accountability structures." },
+      { title: "Profitability Analysis", description: "Product, customer, and channel profitability analysis to inform pricing, portfolio, and resource allocation decisions." },
+      { title: "Automated Report Generation", description: "Eliminate manual data gathering with automated pipelines that deliver reports on schedule without intervention." },
     ],
   },
   {
@@ -105,6 +129,16 @@ export const services: Service[] = [
       { metric: "50%", description: "Reduction in planning cycle time" },
       { metric: "±5%", description: "Forecast accuracy within this range" },
     ],
+    capabilities: [
+      { title: "Driver-Based Planning", description: "Link financial outcomes to operational drivers, enabling faster updates and better understanding of cause-and-effect relationships." },
+      { title: "Rolling Forecast Implementation", description: "Replace static annual budgets with continuously updated forecasts that always look 12-18 months ahead." },
+      { title: "Scenario Modeling", description: "Develop base, upside, and downside scenarios with clear trigger points and contingency plans for each." },
+      { title: "Zero-Based Budgeting Integration", description: "Challenge every cost from zero for selected categories while maintaining efficient processes elsewhere." },
+      { title: "Revenue Planning", description: "Bottom-up revenue builds incorporating pipeline, win rates, pricing, and market assumptions with sensitivity analysis." },
+      { title: "Workforce Planning", description: "Headcount and compensation planning integrated with revenue and project forecasts to optimize resource allocation." },
+      { title: "Capital Planning", description: "Investment prioritization frameworks, ROI analysis, and funding strategy development for major initiatives." },
+      { title: "Planning Technology Selection", description: "Evaluate and implement planning tools (Anaplan, Adaptive, Planful) that fit your complexity and budget." },
+    ],
   },
   {
     slug: "strategic-planning-fpa",
@@ -134,13 +168,23 @@ export const services: Service[] = [
       { metric: "3x", description: "Increase in time spent on value-added analysis" },
       { metric: "85%", description: "Business leader satisfaction with FP&A support" },
     ],
+    capabilities: [
+      { title: "FP&A Operating Model Design", description: "Structure your FP&A function for efficiency and impact—defining roles, processes, and interfaces with the business." },
+      { title: "Business Partnering", description: "Embed finance professionals within business units to provide real-time decision support and commercial insights." },
+      { title: "Long-Range Planning", description: "3-5 year strategic financial plans that translate strategy into financial outcomes with clear milestones." },
+      { title: "Strategic Initiative Tracking", description: "Monitor major initiatives from business case through execution, tracking value realization against original projections." },
+      { title: "Capital Allocation", description: "Framework for prioritizing investments across the portfolio based on strategic fit, returns, and risk." },
+      { title: "Competitive Intelligence", description: "Financial benchmarking against peers, analysis of competitor moves, and market trend monitoring." },
+      { title: "Board Reporting", description: "Prepare board-ready materials that communicate performance, strategy, and risk in a clear, compelling format." },
+      { title: "M&A Financial Support", description: "Financial modeling, due diligence support, and integration planning for acquisitions and divestitures." },
+    ],
   },
   {
     slug: "kpis-dashboards",
     title: "KPIs, Dashboards & Visualizations",
     category: "financial-advisory",
     headline: "Transform data into actionable intelligence",
-    description: "Design and implement performance measurement systems that drive accountability and results.",
+    description: "Design and implement performance measurement systems that drive accountability and results. Unleash the power of your data.",
     challenge: [
       "Organizations track too many metrics without clear hierarchy or accountability.",
       "Dashboards are static reports, not interactive decision-support tools.",
@@ -162,6 +206,16 @@ export const services: Service[] = [
     outcomes: [
       { metric: "1 hour", description: "From question to insight for key business queries" },
       { metric: "90%", description: "Adoption rate for new dashboard tools" },
+    ],
+    capabilities: [
+      { title: "KPI Framework Design", description: "Hierarchical metrics from board-level KPIs through operational drivers, with clear definitions and ownership." },
+      { title: "Executive Dashboard Development", description: "One-page views that give leadership instant visibility into what matters most with drill-down capability." },
+      { title: "Operational Dashboards", description: "Real-time operational metrics for frontline managers to monitor and improve daily performance." },
+      { title: "Self-Service Analytics", description: "Empower business users to answer their own questions without waiting for IT or analysts." },
+      { title: "Data Visualization Best Practices", description: "Apply visualization principles that make data understandable and actionable at a glance." },
+      { title: "Data Integration", description: "Connect disparate data sources into unified views, breaking down silos that obscure the full picture." },
+      { title: "Automated Alerting", description: "Proactive notifications when metrics cross thresholds, enabling rapid response to emerging issues." },
+      { title: "Mobile Analytics", description: "Access critical metrics anywhere via mobile-optimized dashboards and push notifications." },
     ],
   },
   {
@@ -192,6 +246,16 @@ export const services: Service[] = [
       { metric: "4 weeks", description: "Typical timeline to investor-ready plan" },
       { metric: "85%", description: "Success rate in securing target funding" },
     ],
+    capabilities: [
+      { title: "Market Analysis", description: "Size your addressable market, identify segments, and validate demand through primary and secondary research." },
+      { title: "Competitive Positioning", description: "Articulate your differentiation, analyze competitor strategies, and identify sustainable competitive advantages." },
+      { title: "Business Model Design", description: "Structure revenue streams, cost drivers, and unit economics that demonstrate path to profitability." },
+      { title: "Financial Projections", description: "Build bottoms-up models with realistic assumptions, clear drivers, and sensitivity analysis." },
+      { title: "Funding Strategy", description: "Determine optimal funding structure, valuation expectations, and investor targeting strategy." },
+      { title: "Pitch Materials", description: "Create compelling pitch decks that tell your story in 15 slides or less with supporting appendix." },
+      { title: "Due Diligence Preparation", description: "Organize data room, prepare management presentations, and anticipate investor questions." },
+      { title: "Lender Package Development", description: "Prepare materials for debt financing including projections, collateral analysis, and covenant proposals." },
+    ],
   },
   {
     slug: "zero-based-budgeting",
@@ -220,6 +284,16 @@ export const services: Service[] = [
     outcomes: [
       { metric: "15-25%", description: "Addressable cost reduction identified" },
       { metric: "Year 2+", description: "Sustained savings maintained beyond implementation" },
+    ],
+    capabilities: [
+      { title: "Cost Baselining", description: "Establish granular visibility into where money goes, who owns it, and what drives it." },
+      { title: "Decision Package Development", description: "Structure costs into decision packages with clear service levels, enabling informed trade-offs." },
+      { title: "Benchmarking", description: "Compare spending levels against industry peers and best practices to identify opportunity areas." },
+      { title: "Trade-Off Facilitation", description: "Run workshops that force explicit choices between competing priorities with clear consequences." },
+      { title: "Owner Accountability", description: "Assign clear ownership for every cost category with authority and responsibility aligned." },
+      { title: "Tracking & Governance", description: "Implement mechanisms to monitor savings realization and prevent cost creep over time." },
+      { title: "Change Management", description: "Build organizational buy-in through communication, training, and visible leadership commitment." },
+      { title: "Continuous ZBB", description: "Embed ZBB principles into ongoing planning so discipline is maintained year after year." },
     ],
   },
   {
@@ -250,6 +324,16 @@ export const services: Service[] = [
       { metric: "72 hours", description: "Cash position clarity established" },
       { metric: "80%", description: "Success rate avoiding formal insolvency" },
     ],
+    capabilities: [
+      { title: "Cash Crisis Management", description: "Immediate cash conservation measures, payment prioritization, and daily cash monitoring." },
+      { title: "13-Week Cash Flow", description: "Detailed weekly cash forecasting that becomes the foundation for all restructuring decisions." },
+      { title: "Viability Assessment", description: "Honest analysis of whether the business can survive and what it takes to get there." },
+      { title: "Operational Turnaround", description: "Rapid cost reduction, revenue stabilization, and working capital optimization." },
+      { title: "Stakeholder Negotiation", description: "Facilitate discussions with lenders, creditors, suppliers, and other stakeholders." },
+      { title: "Debt Restructuring", description: "Negotiate amended terms, covenant relief, debt-for-equity swaps, or new financing." },
+      { title: "Communication Strategy", description: "Manage internal and external communications to maintain confidence during uncertainty." },
+      { title: "Recovery Monitoring", description: "Track progress against restructuring plan with early warning indicators for course correction." },
+    ],
   },
   {
     slug: "prepackaged-bankruptcy",
@@ -279,6 +363,16 @@ export const services: Service[] = [
       { metric: "60-90 days", description: "Typical time in court proceedings" },
       { metric: "30%+", description: "Higher recoveries vs. traditional bankruptcy" },
     ],
+    capabilities: [
+      { title: "Plan Development", description: "Design restructuring plan that addresses debt, operations, and governance for a viable post-emergence company." },
+      { title: "Stakeholder Solicitation", description: "Secure required creditor and equity holder votes before filing to ensure expedited process." },
+      { title: "Valuation Support", description: "Establish enterprise value and recovery expectations that support plan negotiations." },
+      { title: "Claims Analysis", description: "Analyze and reconcile claims to understand the capital structure and recovery waterfall." },
+      { title: "DIP Financing", description: "Secure debtor-in-possession financing to fund operations through the restructuring process." },
+      { title: "Court Process Management", description: "Coordinate with legal counsel to manage court filings, hearings, and approvals." },
+      { title: "Fresh-Start Accounting", description: "Implement required accounting changes for companies emerging with new ownership." },
+      { title: "Post-Emergence Planning", description: "Develop operating plan, governance structure, and performance targets for the new company." },
+    ],
   },
   {
     slug: "finance-automation",
@@ -307,6 +401,16 @@ export const services: Service[] = [
     outcomes: [
       { metric: "60%", description: "Reduction in manual processing time" },
       { metric: "99%", description: "Accuracy rate in automated processes" },
+    ],
+    capabilities: [
+      { title: "Process Assessment", description: "Identify automation candidates by analyzing process volume, complexity, and error rates." },
+      { title: "RPA Implementation", description: "Deploy robotic process automation for repetitive, rules-based tasks across finance systems." },
+      { title: "Workflow Automation", description: "Implement approval workflows, routing logic, and exception handling for finance processes." },
+      { title: "System Integration", description: "Connect disparate systems through APIs, middleware, or RPA to eliminate manual data transfer." },
+      { title: "Intelligent Document Processing", description: "Extract data from invoices, contracts, and other documents using AI/ML technologies." },
+      { title: "Reconciliation Automation", description: "Automate account reconciliations, matching transactions, and exception identification." },
+      { title: "Close Automation", description: "Streamline month-end close with automated checklists, task management, and status tracking." },
+      { title: "Continuous Monitoring", description: "Implement automated controls testing and anomaly detection for ongoing assurance." },
     ],
   },
 
@@ -339,12 +443,22 @@ export const services: Service[] = [
       { metric: "20%", description: "Reduction in supply chain costs" },
       { metric: "95%+", description: "On-time delivery performance achieved" },
     ],
+    capabilities: [
+      { title: "Supply Chain Strategy", description: "Align supply chain design with business strategy, balancing cost, service, and risk objectives." },
+      { title: "Network Optimization", description: "Optimize facility locations, inventory positioning, and transportation modes for total cost efficiency." },
+      { title: "S&OP Process Design", description: "Implement sales and operations planning that balances demand, supply, and financial plans." },
+      { title: "Procurement Excellence", description: "Strategic sourcing, supplier development, and contract management to optimize total cost of ownership." },
+      { title: "Inventory Optimization", description: "Right-size inventory levels across the network using demand variability and service level analysis." },
+      { title: "Logistics Optimization", description: "Optimize transportation networks, carrier selection, and last-mile delivery for cost and service." },
+      { title: "Supply Chain Visibility", description: "Implement control towers and tracking capabilities for end-to-end supply chain visibility." },
+      { title: "Risk Management", description: "Identify supply chain risks, develop mitigation strategies, and build resilient supply networks." },
+    ],
   },
   {
     slug: "valuations-assessments",
     title: "Valuations & Assessments",
     category: "business-advisory",
-    headline: "Rigorous valuations that withstand scrutiny",
+    headline: "Precise valuations for your next strategic move",
     description: "Provide independent, defensible valuations for transactions, reporting, and strategic decision-making.",
     challenge: [
       "Valuation disputes derail transactions and create legal exposure.",
@@ -367,6 +481,16 @@ export const services: Service[] = [
     outcomes: [
       { metric: "100%", description: "Audit acceptance rate for reporting valuations" },
       { metric: "Zero", description: "Valuation-related deal failures" },
+    ],
+    capabilities: [
+      { title: "Enterprise Valuation", description: "Determine fair market value of businesses using DCF, comparable companies, and precedent transactions." },
+      { title: "Intangible Asset Valuation", description: "Value brands, customer relationships, technology, and other intangible assets for transactions or reporting." },
+      { title: "Purchase Price Allocation", description: "Allocate acquisition purchase price across acquired assets and liabilities per accounting standards." },
+      { title: "Impairment Testing", description: "Perform goodwill and asset impairment testing required under GAAP/IFRS accounting standards." },
+      { title: "Fairness Opinions", description: "Independent opinions on the fairness of transaction terms for boards and special committees." },
+      { title: "Dispute Valuation", description: "Expert valuation analysis and testimony for shareholder disputes, litigation, and arbitration." },
+      { title: "Tax Valuation", description: "Valuations for tax planning, transfer pricing, and estate/gift tax purposes." },
+      { title: "Portfolio Valuation", description: "Fair value measurement of investment portfolios for fund reporting and compliance." },
     ],
   },
   {
@@ -397,6 +521,16 @@ export const services: Service[] = [
       { metric: "2x", description: "Improvement in capital efficiency" },
       { metric: "Alignment", description: "Board and management consensus achieved" },
     ],
+    capabilities: [
+      { title: "Corporate Strategy Development", description: "Define strategic direction, competitive positioning, and value creation priorities for the enterprise." },
+      { title: "Portfolio Strategy", description: "Assess business unit portfolio, identify core vs. non-core assets, and develop portfolio actions." },
+      { title: "Capital Allocation", description: "Design frameworks for allocating capital across businesses, initiatives, and investment types." },
+      { title: "Growth Strategy", description: "Identify and evaluate organic and inorganic growth opportunities aligned to strategic priorities." },
+      { title: "Market Entry Strategy", description: "Assess new market opportunities, entry modes, and go-to-market approaches." },
+      { title: "Business Case Development", description: "Build rigorous business cases for major investments with clear assumptions and risk analysis." },
+      { title: "Strategic Due Diligence", description: "Assess strategic rationale and risks of potential acquisitions or partnerships." },
+      { title: "Strategy Execution", description: "Translate strategy into actionable initiatives with clear ownership, milestones, and tracking." },
+    ],
   },
   {
     slug: "transformations-leadership",
@@ -425,6 +559,16 @@ export const services: Service[] = [
     outcomes: [
       { metric: "85%", description: "Of transformation targets achieved" },
       { metric: "Sustained", description: "Changes maintained 2+ years post-implementation" },
+    ],
+    capabilities: [
+      { title: "Transformation Design", description: "Define transformation vision, scope, and roadmap with clear outcomes and interdependencies." },
+      { title: "Program Management", description: "Establish PMO, governance, and tracking mechanisms to keep complex programs on track." },
+      { title: "Change Management", description: "Design and execute change strategies that build understanding, capability, and commitment." },
+      { title: "Leadership Alignment", description: "Build genuine leadership commitment through workshops, coaching, and visible sponsorship." },
+      { title: "Operating Model Design", description: "Design target operating models that support strategy with clear roles, processes, and governance." },
+      { title: "Process Redesign", description: "Redesign core processes to eliminate waste, improve speed, and enhance customer experience." },
+      { title: "Innovation Programs", description: "Design and facilitate innovation initiatives from ideation through piloting and scaling." },
+      { title: "Capability Building", description: "Develop skills and capabilities required to sustain transformation benefits over time." },
     ],
   },
   {
@@ -455,6 +599,16 @@ export const services: Service[] = [
       { metric: "100%", description: "Critical issues identified pre-close" },
       { metric: "90%+", description: "Synergy capture vs. initial projections" },
     ],
+    capabilities: [
+      { title: "M&A Strategy", description: "Define acquisition criteria, target profiles, and deal thesis aligned to corporate strategy." },
+      { title: "Target Identification", description: "Screen and prioritize potential targets based on strategic fit, availability, and value creation potential." },
+      { title: "Financial Due Diligence", description: "Analyze historical financials, quality of earnings, and working capital to validate deal assumptions." },
+      { title: "Commercial Due Diligence", description: "Assess market position, customer relationships, and revenue sustainability." },
+      { title: "Operational Due Diligence", description: "Evaluate operations, technology, and organizational capabilities for integration planning." },
+      { title: "Synergy Assessment", description: "Identify, quantify, and risk-adjust revenue and cost synergies with detailed implementation plans." },
+      { title: "Deal Structuring", description: "Advise on deal structure, pricing mechanisms, and key terms to optimize value and manage risk." },
+      { title: "Integration Management", description: "Plan and execute post-merger integration to capture synergies and minimize disruption." },
+    ],
   },
   {
     slug: "startup-advisory",
@@ -483,6 +637,16 @@ export const services: Service[] = [
     outcomes: [
       { metric: "6 weeks", description: "To investor-ready financials" },
       { metric: "Series A+", description: "Companies supported through fundraising" },
+    ],
+    capabilities: [
+      { title: "Finance Function Setup", description: "Establish accounting, reporting, and controls infrastructure appropriate for your stage and growth trajectory." },
+      { title: "Fundraising Support", description: "Prepare financial models, data rooms, and investor materials for seed through growth rounds." },
+      { title: "Investor Reporting", description: "Design and deliver monthly/quarterly investor updates that build confidence and trust." },
+      { title: "Board Preparation", description: "Prepare board materials, financial updates, and strategic discussion frameworks." },
+      { title: "Unit Economics Analysis", description: "Measure and improve customer acquisition costs, lifetime value, and path to profitability." },
+      { title: "Pricing Strategy", description: "Develop pricing models and strategies that optimize revenue and support growth." },
+      { title: "Financial Planning", description: "Build financial models that support decision-making and scenario planning." },
+      { title: "Fractional CFO", description: "Provide experienced finance leadership on a flexible basis as you scale toward a full-time hire." },
     ],
   },
 
@@ -515,13 +679,23 @@ export const services: Service[] = [
       { metric: "25%", description: "Improvement in employee engagement scores" },
       { metric: "2x", description: "Increase in strategy execution success rate" },
     ],
+    capabilities: [
+      { title: "Organizational Assessment", description: "Comprehensive diagnostic across structure, capabilities, culture, and ways of working." },
+      { title: "Culture Diagnostic", description: "Measure cultural attributes and alignment between stated values and actual behaviors." },
+      { title: "Employee Engagement", description: "Design and analyze engagement surveys with actionable insights for improvement." },
+      { title: "Operating Model Design", description: "Define organizational structure, decision rights, and governance for strategic alignment." },
+      { title: "Talent Strategy", description: "Develop strategies for attracting, developing, and retaining critical talent." },
+      { title: "Leadership Development", description: "Design programs to build leadership capabilities at all levels of the organization." },
+      { title: "Performance Management", description: "Design systems that drive accountability, development, and alignment with objectives." },
+      { title: "Change Adoption", description: "Measure and improve adoption of new ways of working through behavioral insights." },
+    ],
   },
   {
     slug: "digital-advisory",
     title: "Digital Advisory",
     category: "sustainability-digital",
     headline: "Digital transformation with business outcomes, not technology for its own sake",
-    description: "Guide digital transformation initiatives that deliver measurable business value.",
+    description: "Guide digital transformation initiatives that deliver measurable business value. Future-proof your business.",
     challenge: [
       "Digital initiatives often prioritize technology over business outcomes.",
       "Legacy systems and technical debt impede modernization efforts.",
@@ -544,13 +718,23 @@ export const services: Service[] = [
       { metric: "3x", description: "ROI on digital investments" },
       { metric: "50%", description: "Reduction in time-to-market for digital products" },
     ],
+    capabilities: [
+      { title: "Digital Maturity Assessment", description: "Benchmark digital capabilities across technology, data, processes, and people dimensions." },
+      { title: "Digital Strategy Development", description: "Define digital vision, priorities, and roadmap aligned to business strategy and customer needs." },
+      { title: "Technology Architecture", description: "Design target technology architecture balancing innovation, integration, and operational stability." },
+      { title: "Data Strategy", description: "Develop strategies for data management, analytics, and monetization to unlock data value." },
+      { title: "Digital Product Development", description: "Apply agile and product thinking to develop customer-facing digital solutions." },
+      { title: "Process Digitization", description: "Identify and implement opportunities to digitize and automate business processes." },
+      { title: "Technology Selection", description: "Evaluate and select technology solutions with objective criteria and vendor assessment." },
+      { title: "Digital Capability Building", description: "Develop skills and ways of working required to sustain digital transformation." },
+    ],
   },
   {
     slug: "esg-sustainability",
     title: "ESG & Sustainability",
     category: "sustainability-digital",
     headline: "Sustainability that strengthens performance, not just reputation",
-    description: "Integrate ESG into business strategy to create value for shareholders and stakeholders alike.",
+    description: "Integrate ESG into business strategy to create value for shareholders and stakeholders alike. Future-proof your business through responsible leadership.",
     challenge: [
       "ESG requirements are expanding rapidly across regulatory and stakeholder expectations.",
       "Sustainability initiatives often operate separately from core business strategy.",
@@ -572,6 +756,16 @@ export const services: Service[] = [
     outcomes: [
       { metric: "Compliant", description: "With emerging ESG disclosure requirements" },
       { metric: "Top quartile", description: "ESG ratings within peer group" },
+    ],
+    capabilities: [
+      { title: "Materiality Assessment", description: "Identify ESG topics most material to your business and stakeholders for focused action." },
+      { title: "ESG Strategy Development", description: "Develop ESG strategy that creates business value while meeting stakeholder expectations." },
+      { title: "Climate Strategy", description: "Assess climate risks and opportunities, set targets, and develop decarbonization pathways." },
+      { title: "ESG Reporting", description: "Implement reporting frameworks (GRI, SASB, TCFD, CSRD) with data collection and assurance processes." },
+      { title: "Supply Chain Sustainability", description: "Assess and improve ESG performance across your supply chain and value chain." },
+      { title: "Sustainable Finance", description: "Structure green bonds, sustainability-linked loans, and ESG-focused investor engagement." },
+      { title: "Stakeholder Engagement", description: "Design engagement strategies for investors, employees, communities, and other stakeholders." },
+      { title: "ESG Governance", description: "Establish board and management oversight structures for effective ESG governance." },
     ],
   },
 ];
