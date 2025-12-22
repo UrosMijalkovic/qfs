@@ -83,7 +83,17 @@ export default function Header() {
           <div className="hidden lg:block">
             <Link
               href="/contact"
-              className="inline-flex items-center px-5 py-2.5 text-[15px] font-medium text-white bg-accent hover:bg-accent-hover rounded-lg transition-colors"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: '0.625rem 1.25rem',
+                fontSize: '0.9375rem',
+                fontWeight: 500,
+                color: '#FFFFFF',
+                backgroundColor: '#A5040C',
+                borderRadius: '0.5rem',
+                textDecoration: 'none',
+              }}
             >
               Contact Us
             </Link>
@@ -134,7 +144,18 @@ export default function Header() {
             ))}
             <Link
               href="/contact"
-              className="block mt-4 py-3 text-center text-[15px] font-medium text-white bg-accent rounded-lg"
+              style={{
+                display: 'block',
+                marginTop: '1rem',
+                padding: '0.75rem',
+                textAlign: 'center',
+                fontSize: '0.9375rem',
+                fontWeight: 500,
+                color: '#FFFFFF',
+                backgroundColor: '#A5040C',
+                borderRadius: '0.5rem',
+                textDecoration: 'none',
+              }}
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact Us
