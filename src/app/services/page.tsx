@@ -3,6 +3,58 @@ import Section from "@/components/ui/Section";
 import { ServiceCard } from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
 
+// Hero background component
+const HeroBackground = () => (
+  <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        opacity: 0.03,
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: '60px 60px',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        top: '20%',
+        right: '10%',
+        width: '24rem',
+        height: '24rem',
+        opacity: 0.1,
+        background: 'linear-gradient(135deg, #A5040C 0%, transparent 60%)',
+        borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+        filter: 'blur(60px)',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        bottom: '10%',
+        left: '5%',
+        width: '20rem',
+        height: '20rem',
+        opacity: 0.07,
+        background: 'linear-gradient(225deg, #A5040C 0%, transparent 60%)',
+        borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
+        filter: 'blur(50px)',
+      }}
+    />
+    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04 }} xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="servicesDiagonalLines" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#servicesDiagonalLines)" />
+    </svg>
+  </div>
+);
+
 const serviceCategories = [
   {
     title: "Financial Advisory",
@@ -50,12 +102,13 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-primary-dark pt-32 pb-20 lg:pt-40 lg:pb-28">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-semibold text-white leading-tight max-w-3xl">
+      <section style={{ position: 'relative', backgroundColor: '#0D0D0D', paddingTop: '8rem', paddingBottom: '5rem' }}>
+        <HeroBackground />
+        <div style={{ position: 'relative', zIndex: 10, maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
+          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.1, maxWidth: '48rem' }}>
             Our Services
           </h1>
-          <p className="mt-6 text-lg lg:text-xl text-white/70 max-w-2xl leading-relaxed">
+          <p style={{ marginTop: '1.5rem', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', maxWidth: '42rem', lineHeight: 1.7 }}>
             Comprehensive advisory services for leaders navigating complex financial, strategic, and operational challenges.
           </p>
         </div>
@@ -114,18 +167,33 @@ export default function ServicesPage() {
       ))}
 
       {/* CTA */}
-      <section className="bg-primary-dark py-20 lg:py-28">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-semibold text-white">
+      <section style={{ backgroundColor: '#0D0D0D', padding: '5rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 600, color: '#FFFFFF' }}>
             Not sure where to start?
           </h2>
-          <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
+          <p style={{ marginTop: '1rem', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', maxWidth: '32rem', marginLeft: 'auto', marginRight: 'auto' }}>
             Let's discuss your challenges and identify the right approach together.
           </p>
-          <div className="mt-8">
-            <Button href="/contact" variant="primary" size="lg">
+          <div style={{ marginTop: '2rem' }}>
+            <a
+              href="/contact"
+              className="btn-primary"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1rem 2rem',
+                borderRadius: '0.5rem',
+                backgroundColor: '#A5040C',
+                color: '#FFFFFF',
+                fontSize: '1rem',
+                fontWeight: 500,
+                textDecoration: 'none',
+              }}
+            >
               Schedule a Consultation
-            </Button>
+            </a>
           </div>
         </div>
       </section>

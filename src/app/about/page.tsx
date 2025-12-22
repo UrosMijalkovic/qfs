@@ -386,6 +386,7 @@ export default function AboutPage() {
           <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
             <a
               href="/contact"
+              className="btn-primary"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -403,6 +404,7 @@ export default function AboutPage() {
             </a>
             <a
               href="/careers"
+              className="btn-ghost"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',

@@ -1,33 +1,85 @@
 import Link from "next/link";
 import Section from "@/components/ui/Section";
-import Button from "@/components/ui/Button";
 import { getServicesByCategory, categoryInfo } from "@/lib/services";
 
 const category = categoryInfo["sustainability-digital"];
 const services = getServicesByCategory("sustainability-digital");
 
+// Hero background component
+const HeroBackground = () => (
+  <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        opacity: 0.03,
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: '60px 60px',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        top: '20%',
+        right: '10%',
+        width: '24rem',
+        height: '24rem',
+        opacity: 0.1,
+        background: 'linear-gradient(135deg, #A5040C 0%, transparent 60%)',
+        borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+        filter: 'blur(60px)',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        bottom: '10%',
+        left: '5%',
+        width: '20rem',
+        height: '20rem',
+        opacity: 0.07,
+        background: 'linear-gradient(225deg, #A5040C 0%, transparent 60%)',
+        borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
+        filter: 'blur(50px)',
+      }}
+    />
+    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04 }} xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="sustainDigitalDiagonalLines" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#sustainDigitalDiagonalLines)" />
+    </svg>
+  </div>
+);
+
 export default function SustainabilityDigitalPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-primary-dark pt-32 pb-16 lg:pt-40 lg:pb-24">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <nav className="mb-8">
-            <ol className="flex items-center gap-2 text-[14px] text-white/50">
+      <section style={{ position: 'relative', backgroundColor: '#0D0D0D', paddingTop: '8rem', paddingBottom: '4rem' }}>
+        <HeroBackground />
+        <div style={{ position: 'relative', zIndex: 10, maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
+          <nav style={{ marginBottom: '2rem' }}>
+            <ol style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)' }}>
               <li>
-                <Link href="/services" className="hover:text-white/70 transition-colors">
+                <Link href="/services" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>
                   Services
                 </Link>
               </li>
               <li>/</li>
-              <li className="text-white/70">{category.title}</li>
+              <li style={{ color: 'rgba(255,255,255,0.7)' }}>{category.title}</li>
             </ol>
           </nav>
 
-          <h1 className="text-4xl lg:text-5xl xl:text-6xl font-semibold text-white leading-tight max-w-3xl">
+          <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.1, maxWidth: '48rem' }}>
             {category.title}
           </h1>
-          <p className="mt-6 text-lg lg:text-xl text-white/70 max-w-2xl leading-relaxed">
+          <p style={{ marginTop: '1.5rem', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', maxWidth: '42rem', lineHeight: 1.7 }}>
             {category.description}
           </p>
         </div>
@@ -77,18 +129,33 @@ export default function SustainabilityDigitalPage() {
       </Section>
 
       {/* CTA */}
-      <section className="bg-primary-dark py-20 lg:py-28">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl lg:text-4xl font-semibold text-white">
+      <section style={{ backgroundColor: '#0D0D0D', padding: '5rem 0' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem', textAlign: 'center' }}>
+          <h2 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 600, color: '#FFFFFF' }}>
             Future-proof your organization
           </h2>
-          <p className="mt-4 text-lg text-white/70 max-w-xl mx-auto">
+          <p style={{ marginTop: '1rem', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', maxWidth: '32rem', marginLeft: 'auto', marginRight: 'auto' }}>
             Let's discuss how we can help with your digital and sustainability journey.
           </p>
-          <div className="mt-8">
-            <Button href="/contact" variant="primary" size="lg">
+          <div style={{ marginTop: '2rem' }}>
+            <a
+              href="/contact"
+              className="btn-primary"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1rem 2rem',
+                borderRadius: '0.5rem',
+                backgroundColor: '#A5040C',
+                color: '#FFFFFF',
+                fontSize: '1rem',
+                fontWeight: 500,
+                textDecoration: 'none',
+              }}
+            >
               Schedule a Consultation
-            </Button>
+            </a>
           </div>
         </div>
       </section>

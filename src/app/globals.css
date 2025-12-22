@@ -109,6 +109,28 @@ a:not([style]):hover {
   outline-offset: 2px;
 }
 
+/* Button Styles */
+.btn-primary {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(165, 4, 12, 0.4);
+  filter: brightness(1.1);
+}
+
+.btn-ghost {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  transform: translateY(-1px);
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

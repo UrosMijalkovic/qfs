@@ -83,6 +83,7 @@ export default function Header() {
           <div className="hidden lg:block">
             <Link
               href="/contact"
+              className="btn-primary"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -144,6 +145,7 @@ export default function Header() {
             ))}
             <Link
               href="/contact"
+              className="btn-primary"
               style={{
                 display: 'block',
                 marginTop: '1rem',

@@ -57,16 +57,18 @@ export default function Button({
     ...sizeStyles[size],
   };
 
+  const hoverClass = variant === "ghost" ? "btn-ghost" : "btn-primary";
+
   if (href) {
     return (
-      <Link href={href} style={combinedStyles} className={className}>
+      <Link href={href} style={combinedStyles} className={`${hoverClass} ${className}`}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button onClick={onClick} style={combinedStyles} className={className}>
+    <button onClick={onClick} style={combinedStyles} className={`${hoverClass} ${className}`}>
       {children}
     </button>
   );

@@ -190,6 +190,7 @@ export default function CareersPage() {
             <div style={{ marginTop: '2rem' }}>
               <a
                 href="#positions"
+                className="btn-primary"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -376,6 +377,7 @@ export default function CareersPage() {
                   <div style={{ flexShrink: 0 }}>
                     <a
                       href={`mailto:careers@qfs.rs?subject=Application: ${position.title}`}
+                      className="btn-primary"
                       style={{
                         display: 'inline-flex',
                         alignItems: 'center',
@@ -445,6 +447,7 @@ export default function CareersPage() {
           <div style={{ marginTop: '2rem' }}>
             <a
               href="mailto:careers@qfs.rs?subject=General Application"
+              className="btn-primary"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',

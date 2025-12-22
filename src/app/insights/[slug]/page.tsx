@@ -24,6 +24,58 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+// Hero background component
+const HeroBackground = () => (
+  <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+    <div
+      style={{
+        position: 'absolute',
+        inset: 0,
+        opacity: 0.03,
+        backgroundImage: `
+          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+        `,
+        backgroundSize: '60px 60px',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        top: '20%',
+        right: '10%',
+        width: '24rem',
+        height: '24rem',
+        opacity: 0.1,
+        background: 'linear-gradient(135deg, #A5040C 0%, transparent 60%)',
+        borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
+        filter: 'blur(60px)',
+      }}
+    />
+    <div
+      style={{
+        position: 'absolute',
+        bottom: '10%',
+        left: '5%',
+        width: '20rem',
+        height: '20rem',
+        opacity: 0.07,
+        background: 'linear-gradient(225deg, #A5040C 0%, transparent 60%)',
+        borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
+        filter: 'blur(50px)',
+      }}
+    />
+    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04 }} xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="insightArticleDiagonalLines" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="1" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#insightArticleDiagonalLines)" />
+    </svg>
+  </div>
+);
+
 export default async function InsightPage({
   params,
 }: {
@@ -41,33 +93,44 @@ export default async function InsightPage({
   return (
     <>
       {/* Hero */}
-      <section className="bg-primary-dark pt-32 pb-16 lg:pt-40 lg:pb-20">
-        <div className="max-w-[800px] mx-auto px-6 lg:px-8">
+      <section style={{ position: 'relative', backgroundColor: '#0D0D0D', paddingTop: '8rem', paddingBottom: '4rem' }}>
+        <HeroBackground />
+        <div style={{ position: 'relative', zIndex: 10, maxWidth: '800px', margin: '0 auto', padding: '0 1.5rem' }}>
           {/* Breadcrumb */}
-          <nav className="mb-8">
-            <ol className="flex items-center gap-2 text-[14px] text-white/50">
+          <nav style={{ marginBottom: '2rem' }}>
+            <ol style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', color: 'rgba(255,255,255,0.5)' }}>
               <li>
-                <Link href="/insights" className="hover:text-white/70 transition-colors">
+                <Link href="/insights" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>
                   Insights
                 </Link>
               </li>
               <li>/</li>
-              <li className="text-white/70">{categoryLabels[insight.category]}</li>
+              <li style={{ color: 'rgba(255,255,255,0.7)' }}>{categoryLabels[insight.category]}</li>
             </ol>
           </nav>
 
           {/* Category */}
-          <span className="inline-block px-3 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-accent text-white">
+          <span style={{
+            display: 'inline-block',
+            padding: '0.375rem 0.75rem',
+            borderRadius: '9999px',
+            fontSize: '0.6875rem',
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.05em',
+            backgroundColor: '#A5040C',
+            color: '#FFFFFF',
+          }}>
             {categoryLabels[insight.category]}
           </span>
 
-          <h1 className="mt-6 text-3xl lg:text-4xl xl:text-[42px] font-semibold text-white leading-tight">
+          <h1 style={{ marginTop: '1.5rem', fontSize: 'clamp(1.875rem, 4vw, 2.625rem)', fontWeight: 600, color: '#FFFFFF', lineHeight: 1.2 }}>
             {insight.title}
           </h1>
 
-          <div className="mt-6 flex items-center gap-4 text-[15px] text-white/60">
+          <div style={{ marginTop: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.9375rem', color: 'rgba(255,255,255,0.6)' }}>
             <span>{insight.date}</span>
-            <span className="w-1 h-1 rounded-full bg-white/40" />
+            <span style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.4)' }} />
             <span>{insight.readTime}</span>
           </div>
         </div>
@@ -214,8 +277,9 @@ export default async function InsightPage({
             Our partners are available for a confidential conversation about your needs.
           </p>
           <div style={{ marginTop: '2rem' }}>
-            <Link
+            <a
               href="/contact"
+              className="btn-primary"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -230,7 +294,7 @@ export default async function InsightPage({
               }}
             >
               Contact Us
-            </Link>
+            </a>
           </div>
         </div>
       </section>
