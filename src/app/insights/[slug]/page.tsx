@@ -8,6 +8,7 @@ const articleImages: Record<string, string> = {
   "zero-based-budgeting": "/insight-zero-based-budgeting.jpg",
   "ma-integration": "/insight-ma-integration.jpg",
   "supply-chain-resilience": "/insight-supply-chain-resilience.jpg",
+  "building-high-performance-fpa": "/insight-building-high-performance-fpa.jpg",
 };
 
 const categoryImages: Record<Insight["category"], string> = {
