@@ -1,5 +1,27 @@
 import Link from "next/link";
-import { insights, categoryLabels, getFeaturedInsight } from "@/lib/insights";
+import { insights, categoryLabels, getFeaturedInsight, Insight } from "@/lib/insights";
+
+// Map article slugs to images (fallback to category-based)
+const articleImages: Record<string, string> = {
+  "cfo-guide-uncertainty": "/insight-cfo-guide-uncertainty.jpg",
+  "zero-based-budgeting": "/insight-zero-based-budgeting.jpg",
+  "ma-integration": "/insight-ma-integration.jpg",
+  "supply-chain-resilience": "/insight-supply-chain-resilience.jpg",
+};
+
+const categoryImages: Record<Insight["category"], string> = {
+  "financial-performance": "/insight-financial.jpg",
+  "strategy": "/insight-strategy.jpg",
+  "sustainability": "/insight-sustainability.jpg",
+  "transactions": "/insight-strategy.jpg",
+  "digital": "/insight-financial.jpg",
+  "leadership": "/insight-strategy.jpg",
+};
+
+// Get image for an insight (article-specific or category fallback)
+const getInsightImage = (insight: Insight) => {
+  return articleImages[insight.slug] || categoryImages[insight.category];
+};
 
 export const metadata = {
   title: "Insights | QFS",
@@ -9,52 +31,18 @@ export const metadata = {
 // Hero background component
 const HeroBackground = () => (
   <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+    <img
+      src="/hero.jpg"
+      alt=""
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+    />
     <div
       style={{
         position: 'absolute',
         inset: 0,
-        opacity: 0.03,
-        backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-        `,
-        backgroundSize: '60px 60px',
+        background: 'linear-gradient(135deg, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.7) 50%, rgba(13,13,13,0.6) 100%)',
       }}
     />
-    <div
-      style={{
-        position: 'absolute',
-        top: '20%',
-        right: '10%',
-        width: '24rem',
-        height: '24rem',
-        opacity: 0.1,
-        background: 'linear-gradient(135deg, #A5040C 0%, transparent 60%)',
-        borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
-        filter: 'blur(60px)',
-      }}
-    />
-    <div
-      style={{
-        position: 'absolute',
-        bottom: '10%',
-        left: '5%',
-        width: '20rem',
-        height: '20rem',
-        opacity: 0.07,
-        background: 'linear-gradient(225deg, #A5040C 0%, transparent 60%)',
-        borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-        filter: 'blur(50px)',
-      }}
-    />
-    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04 }} xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="insightsDiagonalLines" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="1" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#insightsDiagonalLines)" />
-    </svg>
   </div>
 );
 
@@ -88,22 +76,14 @@ export default function InsightsPage() {
             href={`/insights/${featured.slug}`}
             className="group mt-6 grid lg:grid-cols-2 gap-8 lg:gap-12"
           >
-            {/* Image placeholder */}
+            {/* Image */}
             <div className="relative aspect-[16/10] lg:aspect-auto rounded-2xl overflow-hidden bg-primary-dark">
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(135deg, #1a1a1a 0%, #0D0D0D 50%, #A5040C 150%)',
-                }}
+              <img
+                src={getInsightImage(featured)}
+                alt={featured.title}
+                className="absolute inset-0 w-full h-full object-cover"
               />
-              {/* Geometric overlay */}
-              <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 250">
-                <path d="M0,125 Q100,75 200,125 T400,125" stroke="white" strokeWidth="0.5" fill="none" />
-                <path d="M0,145 Q100,95 200,145 T400,145" stroke="white" strokeWidth="0.5" fill="none" />
-                <path d="M0,165 Q100,115 200,165 T400,165" stroke="white" strokeWidth="0.5" fill="none" />
-                <circle cx="350" cy="60" r="40" stroke="white" strokeWidth="0.5" fill="none" opacity="0.5" />
-                <circle cx="350" cy="60" r="25" stroke="white" strokeWidth="0.5" fill="none" opacity="0.5" />
-              </svg>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               {/* Category badge */}
               <div className="absolute top-6 left-6">
                 <span className="px-3 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wider bg-accent text-white">
@@ -150,18 +130,14 @@ export default function InsightsPage() {
                 href={`/insights/${insight.slug}`}
                 className="group block bg-white rounded-xl overflow-hidden border border-border-gray hover:shadow-xl hover:border-accent/20 transition-all duration-300"
               >
-                {/* Image placeholder */}
+                {/* Image */}
                 <div className="relative h-48 bg-primary-dark">
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: 'linear-gradient(135deg, #1a1a1a 0%, #0D0D0D 70%, #A5040C 150%)',
-                    }}
+                  <img
+                    src={getInsightImage(insight)}
+                    alt={insight.title}
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
-                  <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 300 200">
-                    <rect x="200" y="20" width="60" height="60" stroke="white" strokeWidth="0.5" fill="none" />
-                    <circle cx="60" cy="140" r="30" stroke="white" strokeWidth="0.5" fill="none" />
-                  </svg>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                   <div className="absolute top-4 left-4">
                     <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-accent text-white">
                       {categoryLabels[insight.category]}

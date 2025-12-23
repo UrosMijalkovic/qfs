@@ -2,7 +2,29 @@ import Link from "next/link";
 import Button from "@/components/ui/Button";
 import Section from "@/components/ui/Section";
 import { ServiceCard, ProofPoint, ArticleCard } from "@/components/ui/Card";
-import { getFeaturedInsight, getRecentInsights, categoryLabels } from "@/lib/insights";
+import { getFeaturedInsight, getRecentInsights, categoryLabels, Insight } from "@/lib/insights";
+
+// Map article slugs to images (fallback to category-based)
+const articleImages: Record<string, string> = {
+  "cfo-guide-uncertainty": "/insight-cfo-guide-uncertainty.jpg",
+  "zero-based-budgeting": "/insight-zero-based-budgeting.jpg",
+  "ma-integration": "/insight-ma-integration.jpg",
+  "supply-chain-resilience": "/insight-supply-chain-resilience.jpg",
+};
+
+const categoryImages: Record<Insight["category"], string> = {
+  "financial-performance": "/insight-financial.jpg",
+  "strategy": "/insight-strategy.jpg",
+  "sustainability": "/insight-sustainability.jpg",
+  "transactions": "/insight-strategy.jpg",
+  "digital": "/insight-financial.jpg",
+  "leadership": "/insight-strategy.jpg",
+};
+
+// Get image for an insight (article-specific or category fallback)
+const getInsightImage = (insight: Insight) => {
+  return articleImages[insight.slug] || categoryImages[insight.category];
+};
 
 // Icons for services
 const FinanceIcon = () => (
@@ -23,55 +45,22 @@ const SustainabilityIcon = () => (
   </svg>
 );
 
-// Abstract geometric background component
+// Hero background with image
 const HeroBackground = () => (
   <div className="absolute inset-0 overflow-hidden">
-    {/* Grid pattern */}
+    {/* Background image */}
+    <img
+      src="/hero.jpg"
+      alt=""
+      className="absolute inset-0 w-full h-full object-cover"
+    />
+    {/* Dark overlay for text readability */}
     <div
-      className="absolute inset-0 opacity-[0.03]"
+      className="absolute inset-0"
       style={{
-        backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-        `,
-        backgroundSize: '60px 60px',
+        background: 'linear-gradient(135deg, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.7) 50%, rgba(13,13,13,0.6) 100%)',
       }}
     />
-
-    {/* Accent geometric shapes */}
-    <div
-      className="absolute top-20 right-[10%] w-96 h-96 opacity-10"
-      style={{
-        background: 'linear-gradient(135deg, #A5040C 0%, transparent 60%)',
-        borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
-        filter: 'blur(60px)',
-      }}
-    />
-    <div
-      className="absolute bottom-20 left-[5%] w-80 h-80 opacity-[0.07]"
-      style={{
-        background: 'linear-gradient(225deg, #A5040C 0%, transparent 60%)',
-        borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-        filter: 'blur(50px)',
-      }}
-    />
-
-    {/* Diagonal lines */}
-    <svg className="absolute inset-0 w-full h-full opacity-[0.04]" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="diagonalLines" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="1" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#diagonalLines)" />
-    </svg>
-
-    {/* Corner accent */}
-    <div className="absolute top-0 right-0 w-1/3 h-1/2">
-      <svg viewBox="0 0 400 400" className="w-full h-full opacity-[0.03]">
-        <path d="M400,0 L400,400 L0,400 Q200,200 400,0" fill="white" />
-      </svg>
-    </div>
   </div>
 );
 
@@ -117,22 +106,14 @@ const FeaturedInsightsSection = () => {
             className="group block rounded-2xl overflow-hidden"
             style={{ backgroundColor: '#0D0D0D' }}
           >
-            {/* Abstract image placeholder */}
+            {/* Article image */}
             <div className="relative h-64 overflow-hidden">
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: 'linear-gradient(135deg, #1a1a1a 0%, #0D0D0D 50%, #A5040C 150%)',
-                }}
+              <img
+                src={getInsightImage(featured)}
+                alt={featured.title}
+                className="absolute inset-0 w-full h-full object-cover"
               />
-              {/* Geometric overlay */}
-              <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 200">
-                <path d="M0,100 Q100,50 200,100 T400,100" stroke="white" strokeWidth="0.5" fill="none" />
-                <path d="M0,120 Q100,70 200,120 T400,120" stroke="white" strokeWidth="0.5" fill="none" />
-                <path d="M0,140 Q100,90 200,140 T400,140" stroke="white" strokeWidth="0.5" fill="none" />
-                <circle cx="350" cy="50" r="30" stroke="white" strokeWidth="0.5" fill="none" opacity="0.5" />
-                <circle cx="350" cy="50" r="20" stroke="white" strokeWidth="0.5" fill="none" opacity="0.5" />
-              </svg>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               {/* Category badge */}
               <div className="absolute top-6 left-6">
                 <span
@@ -173,16 +154,11 @@ const FeaturedInsightsSection = () => {
                 style={{ backgroundColor: '#FAFAFA', border: '1px solid #E5E5E5' }}
               >
                 {/* Mini visual */}
-                <div
-                  className="hidden sm:flex w-24 h-24 flex-shrink-0 rounded-lg items-center justify-center"
-                  style={{ backgroundColor: '#0D0D0D' }}
-                >
-                  <div
-                    className="w-8 h-8 rounded"
-                    style={{
-                      background: 'linear-gradient(135deg, #A5040C 0%, #7A0309 100%)',
-                      opacity: 0.8
-                    }}
+                <div className="hidden sm:block w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
+                  <img
+                    src={getInsightImage(article)}
+                    alt={article.title}
+                    className="w-full h-full object-cover"
                   />
                 </div>
 
@@ -241,11 +217,11 @@ export default function Home() {
         <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-8 text-center pt-20">
           {/* Overline */}
           <div className="mb-6 flex items-center justify-center gap-3">
-            <div className="h-px w-12 bg-[#A5040C]" />
-            <span className="text-[13px] font-medium tracking-widest uppercase" style={{ color: '#A5040C' }}>
+            <div className="h-px w-12 bg-white/50" />
+            <span className="text-[13px] font-semibold tracking-widest uppercase" style={{ color: '#FFFFFF' }}>
               Advisory Services
             </span>
-            <div className="h-px w-12 bg-[#A5040C]" />
+            <div className="h-px w-12 bg-white/50" />
           </div>
 
           <h1
@@ -270,20 +246,20 @@ export default function Home() {
           </div>
 
           {/* Trust indicators */}
-          <div className="mt-20 flex items-center justify-center gap-8 opacity-40">
+          <div className="mt-20 flex items-center justify-center gap-8">
             <div className="text-center">
               <div className="text-2xl font-bold" style={{ color: '#FFFFFF' }}>150+</div>
-              <div className="text-xs uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.6)' }}>Projects</div>
+              <div className="text-xs uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.7)' }}>Projects</div>
             </div>
-            <div className="w-px h-8 bg-white/20" />
+            <div className="w-px h-8 bg-white/40" />
             <div className="text-center">
               <div className="text-2xl font-bold" style={{ color: '#FFFFFF' }}>12+</div>
-              <div className="text-xs uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.6)' }}>Years</div>
+              <div className="text-xs uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.7)' }}>Years</div>
             </div>
-            <div className="w-px h-8 bg-white/20" />
+            <div className="w-px h-8 bg-white/40" />
             <div className="text-center">
               <div className="text-2xl font-bold" style={{ color: '#FFFFFF' }}>50+</div>
-              <div className="text-xs uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.6)' }}>Clients</div>
+              <div className="text-xs uppercase tracking-wider" style={{ color: 'rgba(255,255,255,0.7)' }}>Clients</div>
             </div>
           </div>
         </div>
@@ -604,59 +580,12 @@ export default function Home() {
 
             {/* Visual element */}
             <div className="relative">
-              <div
-                className="aspect-square rounded-2xl overflow-hidden"
-                style={{ backgroundColor: '#0D0D0D' }}
-              >
-                {/* Abstract composition */}
-                <div className="relative w-full h-full">
-                  {/* Grid pattern */}
-                  <div
-                    className="absolute inset-0 opacity-10"
-                    style={{
-                      backgroundImage: `
-                        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-                      `,
-                      backgroundSize: '40px 40px',
-                    }}
-                  />
-
-                  {/* Geometric shapes */}
-                  <div
-                    className="absolute top-1/4 left-1/4 w-32 h-32"
-                    style={{
-                      backgroundColor: '#A5040C',
-                      opacity: 0.9,
-                    }}
-                  />
-                  <div
-                    className="absolute top-1/3 left-1/3 w-40 h-40 border-2"
-                    style={{ borderColor: 'rgba(255,255,255,0.2)' }}
-                  />
-                  <div
-                    className="absolute bottom-1/4 right-1/4 w-24 h-24 rounded-full"
-                    style={{
-                      backgroundColor: 'rgba(255,255,255,0.1)',
-                    }}
-                  />
-
-                  {/* Diagonal line */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
-                    <line x1="0" y1="400" x2="400" y2="0" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-                    <line x1="0" y1="350" x2="350" y2="0" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
-                  </svg>
-
-                  {/* QFS text */}
-                  <div className="absolute bottom-8 right-8">
-                    <span
-                      className="text-6xl font-bold"
-                      style={{ color: 'rgba(255,255,255,0.1)' }}
-                    >
-                      QFS
-                    </span>
-                  </div>
-                </div>
+              <div className="aspect-square rounded-2xl overflow-hidden">
+                <img
+                  src="/team-leadership.jpg"
+                  alt="QFS Leadership Team"
+                  className="w-full h-full object-cover"
+                />
               </div>
 
               {/* Floating accent */}

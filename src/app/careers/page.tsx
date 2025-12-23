@@ -121,55 +121,18 @@ const openPositions = [
 // Hero background component
 const HeroBackground = () => (
   <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-    {/* Grid pattern */}
+    <img
+      src="/contact-hero.jpg"
+      alt=""
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+    />
     <div
       style={{
         position: 'absolute',
         inset: 0,
-        opacity: 0.03,
-        backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-        `,
-        backgroundSize: '60px 60px',
+        background: 'linear-gradient(135deg, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.7) 50%, rgba(13,13,13,0.6) 100%)',
       }}
     />
-    {/* Accent shapes */}
-    <div
-      style={{
-        position: 'absolute',
-        top: '20%',
-        right: '10%',
-        width: '24rem',
-        height: '24rem',
-        opacity: 0.1,
-        background: 'linear-gradient(135deg, #A5040C 0%, transparent 60%)',
-        borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
-        filter: 'blur(60px)',
-      }}
-    />
-    <div
-      style={{
-        position: 'absolute',
-        bottom: '10%',
-        left: '5%',
-        width: '20rem',
-        height: '20rem',
-        opacity: 0.07,
-        background: 'linear-gradient(225deg, #A5040C 0%, transparent 60%)',
-        borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-        filter: 'blur(50px)',
-      }}
-    />
-    {/* Diagonal lines */}
-    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04 }} xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="careersDiagonalLines" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="1" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#careersDiagonalLines)" />
-    </svg>
   </div>
 );
 
@@ -254,25 +217,12 @@ export default function CareersPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             {/* Visual */}
             <div className="relative order-2 lg:order-1">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-primary-dark">
-                <div className="relative w-full h-full">
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: 'linear-gradient(135deg, #1a1a1a 0%, #0D0D0D 50%, #A5040C 150%)',
-                    }}
-                  />
-                  {/* Abstract elements */}
-                  <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 300">
-                    <circle cx="100" cy="100" r="60" stroke="white" strokeWidth="0.5" fill="none" />
-                    <circle cx="100" cy="100" r="40" stroke="white" strokeWidth="0.5" fill="none" />
-                    <rect x="250" y="150" width="100" height="100" stroke="white" strokeWidth="0.5" fill="none" />
-                    <line x1="0" y1="200" x2="400" y2="100" stroke="white" strokeWidth="0.5" />
-                  </svg>
-                  <div className="absolute bottom-6 left-6">
-                    <span className="text-white/80 text-lg font-medium">Our Team</span>
-                  </div>
-                </div>
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+                <img
+                  src="/team-leadership.jpg"
+                  alt="QFS Leadership Team"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
 

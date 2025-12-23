@@ -28,9 +28,11 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-semibold text-near-black tracking-tight">
-              QFS
-            </span>
+            <img
+              src="/logo.png"
+              alt="QFS - Dedicated To Your Success"
+              className="h-10 lg:h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

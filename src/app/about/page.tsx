@@ -75,57 +75,18 @@ const leadership = [
 // Hero background component
 const HeroBackground = () => (
   <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
-    {/* Grid pattern */}
+    <img
+      src="/contact-hero.jpg"
+      alt=""
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+    />
     <div
       style={{
         position: 'absolute',
         inset: 0,
-        opacity: 0.03,
-        backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-        `,
-        backgroundSize: '60px 60px',
+        background: 'linear-gradient(135deg, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.7) 50%, rgba(13,13,13,0.6) 100%)',
       }}
     />
-
-    {/* Accent geometric shapes */}
-    <div
-      style={{
-        position: 'absolute',
-        top: '20%',
-        right: '10%',
-        width: '24rem',
-        height: '24rem',
-        opacity: 0.1,
-        background: 'linear-gradient(135deg, #A5040C 0%, transparent 60%)',
-        borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
-        filter: 'blur(60px)',
-      }}
-    />
-    <div
-      style={{
-        position: 'absolute',
-        bottom: '10%',
-        left: '5%',
-        width: '20rem',
-        height: '20rem',
-        opacity: 0.07,
-        background: 'linear-gradient(225deg, #A5040C 0%, transparent 60%)',
-        borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-        filter: 'blur(50px)',
-      }}
-    />
-
-    {/* Diagonal lines */}
-    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04 }} xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="aboutDiagonalLines" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="1" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#aboutDiagonalLines)" />
-    </svg>
   </div>
 );
 
@@ -186,41 +147,12 @@ export default function AboutPage() {
 
             {/* Visual */}
             <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-primary-dark">
-                <div className="relative w-full h-full">
-                  {/* Grid pattern */}
-                  <div
-                    className="absolute inset-0 opacity-10"
-                    style={{
-                      backgroundImage: `
-                        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-                      `,
-                      backgroundSize: '40px 40px',
-                    }}
-                  />
-                  {/* Geometric shapes */}
-                  <div
-                    className="absolute top-1/4 left-1/4 w-32 h-32"
-                    style={{ backgroundColor: '#A5040C', opacity: 0.9 }}
-                  />
-                  <div
-                    className="absolute top-1/3 left-1/3 w-40 h-40 border-2"
-                    style={{ borderColor: 'rgba(255,255,255,0.2)' }}
-                  />
-                  <div
-                    className="absolute bottom-1/4 right-1/4 w-24 h-24 rounded-full"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
-                  />
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
-                    <line x1="0" y1="400" x2="400" y2="0" stroke="rgba(255,255,255,0.1)" strokeWidth="1" />
-                  </svg>
-                  <div className="absolute bottom-8 right-8">
-                    <span className="text-6xl font-bold" style={{ color: 'rgba(255,255,255,0.1)' }}>
-                      QFS
-                    </span>
-                  </div>
-                </div>
+              <div className="aspect-square rounded-2xl overflow-hidden">
+                <img
+                  src="/about-mission.jpg"
+                  alt="QFS Team collaboration"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-accent" />
             </div>

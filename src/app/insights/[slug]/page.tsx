@@ -1,6 +1,28 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { insights, categoryLabels, getInsightBySlug, getRecentInsights } from "@/lib/insights";
+import { insights, categoryLabels, getInsightBySlug, getRecentInsights, Insight } from "@/lib/insights";
+
+// Map article slugs to images (fallback to category-based)
+const articleImages: Record<string, string> = {
+  "cfo-guide-uncertainty": "/insight-cfo-guide-uncertainty.jpg",
+  "zero-based-budgeting": "/insight-zero-based-budgeting.jpg",
+  "ma-integration": "/insight-ma-integration.jpg",
+  "supply-chain-resilience": "/insight-supply-chain-resilience.jpg",
+};
+
+const categoryImages: Record<Insight["category"], string> = {
+  "financial-performance": "/insight-financial.jpg",
+  "strategy": "/insight-strategy.jpg",
+  "sustainability": "/insight-sustainability.jpg",
+  "transactions": "/insight-strategy.jpg",
+  "digital": "/insight-financial.jpg",
+  "leadership": "/insight-strategy.jpg",
+};
+
+// Get image for an insight (article-specific or category fallback)
+const getInsightImage = (insight: Insight) => {
+  return articleImages[insight.slug] || categoryImages[insight.category];
+};
 
 // Generate static params for all insights
 export function generateStaticParams() {
@@ -27,52 +49,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 // Hero background component
 const HeroBackground = () => (
   <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+    <img
+      src="/hero.jpg"
+      alt=""
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+    />
     <div
       style={{
         position: 'absolute',
         inset: 0,
-        opacity: 0.03,
-        backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-        `,
-        backgroundSize: '60px 60px',
+        background: 'linear-gradient(135deg, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.7) 50%, rgba(13,13,13,0.6) 100%)',
       }}
     />
-    <div
-      style={{
-        position: 'absolute',
-        top: '20%',
-        right: '10%',
-        width: '24rem',
-        height: '24rem',
-        opacity: 0.1,
-        background: 'linear-gradient(135deg, #A5040C 0%, transparent 60%)',
-        borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
-        filter: 'blur(60px)',
-      }}
-    />
-    <div
-      style={{
-        position: 'absolute',
-        bottom: '10%',
-        left: '5%',
-        width: '20rem',
-        height: '20rem',
-        opacity: 0.07,
-        background: 'linear-gradient(225deg, #A5040C 0%, transparent 60%)',
-        borderRadius: '60% 40% 30% 70% / 60% 30% 70% 40%',
-        filter: 'blur(50px)',
-      }}
-    />
-    <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.04 }} xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="insightArticleDiagonalLines" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="40" stroke="white" strokeWidth="1" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#insightArticleDiagonalLines)" />
-    </svg>
   </div>
 );
 
@@ -235,14 +223,14 @@ export default async function InsightPage({
                   href={`/insights/${related.slug}`}
                   className="group block bg-white rounded-xl overflow-hidden border border-border-gray hover:shadow-xl hover:border-accent/20 transition-all duration-300"
                 >
-                  {/* Image placeholder */}
+                  {/* Image */}
                   <div className="relative h-40 bg-primary-dark">
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: 'linear-gradient(135deg, #1a1a1a 0%, #0D0D0D 70%, #A5040C 150%)',
-                      }}
+                    <img
+                      src={getInsightImage(related)}
+                      alt={related.title}
+                      className="absolute inset-0 w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     <div className="absolute top-4 left-4">
                       <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-accent text-white">
                         {categoryLabels[related.category]}

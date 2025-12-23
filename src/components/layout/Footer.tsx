@@ -21,8 +21,12 @@ export default function Footer() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem' }}>
           {/* Brand */}
           <div>
-            <Link href="/" style={{ fontSize: '1.5rem', fontWeight: 600, letterSpacing: '-0.025em', color: '#FFFFFF', textDecoration: 'none' }}>
-              QFS
+            <Link href="/" style={{ textDecoration: 'none' }}>
+              <img
+                src="/logo.png"
+                alt="QFS - Dedicated To Your Success"
+                style={{ height: '2.5rem', width: 'auto' }}
+              />
             </Link>
             <p style={{ marginTop: '1rem', fontSize: '0.9375rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6, maxWidth: '280px' }}>
               We partner with leadership teams to solve complex financial and strategic challenges.
