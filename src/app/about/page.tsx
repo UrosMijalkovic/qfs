@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Button from "@/components/ui/Button";
+import TeamSection from "@/components/sections/TeamSection";
 
 export const metadata = {
   title: "About | QFS",
@@ -52,24 +53,6 @@ const milestones = [
   { year: "2020", event: "Added ESG & sustainability advisory" },
   { year: "2023", event: "150+ successful client engagements" },
   { year: "2024", event: "Regional expansion across Southeast Europe" },
-];
-
-const leadership = [
-  {
-    name: "Leadership Team",
-    role: "Partners & Directors",
-    description: "Our leadership team brings decades of combined experience from Big Four firms, investment banks, and industry operating roles. They've led transformations, restructurings, and strategic initiatives across industries.",
-  },
-  {
-    name: "Advisory Network",
-    role: "Senior Advisors",
-    description: "We maintain relationships with senior executives and industry specialists who provide additional perspective and expertise on complex engagements.",
-  },
-  {
-    name: "Delivery Teams",
-    role: "Consultants & Analysts",
-    description: "Our consultant teams combine analytical rigor with practical implementation skills. Many have backgrounds in finance, strategy, and operations across diverse industries.",
-  },
 ];
 
 // Hero background component
@@ -234,41 +217,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Leadership */}
-      <section className="py-20 lg:py-28 bg-light-gray">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-[12px] font-semibold tracking-widest uppercase text-accent">
-              Our People
-            </span>
-            <h2 className="mt-4 text-3xl lg:text-4xl font-semibold text-near-black">
-              The Team
-            </h2>
-            <p className="mt-4 text-lg text-text-gray max-w-2xl mx-auto">
-              Our strength lies in our people—experienced professionals who bring diverse backgrounds and deep expertise to every engagement.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {leadership.map((group, index) => (
-              <div
-                key={index}
-                className="bg-white p-8 rounded-2xl border border-border-gray"
-              >
-                <h3 className="text-xl font-semibold text-near-black mb-1">
-                  {group.name}
-                </h3>
-                <p className="text-[14px] text-accent font-medium mb-4">
-                  {group.role}
-                </p>
-                <p className="text-[15px] text-text-gray leading-relaxed">
-                  {group.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Team Section */}
+      <TeamSection />
 
       {/* Timeline */}
       <section className="py-20 lg:py-28 bg-white">
