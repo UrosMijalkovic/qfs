@@ -145,6 +145,14 @@ function TeamMemberCard({ member, onOpenBio }: TeamMemberCardProps) {
             </span>
           )}
         </div>
+
+        {/* Mobile Full Bio button - visible only on touch devices */}
+        <button
+          onClick={onOpenBio}
+          className="mt-4 w-full py-2.5 px-4 border border-accent text-accent rounded-lg text-[13px] font-medium md:hidden hover:bg-accent hover:text-white transition-colors"
+        >
+          Full Bio
+        </button>
       </div>
     </div>
   );
